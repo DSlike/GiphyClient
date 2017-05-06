@@ -1,0 +1,71 @@
+#pagination{
+     display: table;
+     margin:1em auto 2em auto;
+     .next,  .prev, .pagination-button{
+          display: inline-block;
+          padding:.5em;
+          color:white;
+          width: 5em;
+          text-transform: uppercase;
+          border-radius: 1em;
+          text-align: center;
+          background-image: linear-gradient(to right top, #fbc2eb 0%, #a6c1ee 100%);
+          margin: 0 .5em;
+          cursor: pointer;
+          transition: .3s;
+
+          &:hover{
+               background-image: linear-gradient(to right top, #fbc2eb 10%, #a6c1ee 100%);
+               transform: scale(1.1);
+               box-shadow: 0 2px 5px rgba($mainDark, .3);
+          }
+          &:active{
+               background-image: linear-gradient(to right top, #fbc2eb 0%, #a6c1ee 100%);
+               box-shadow: 0 3px 8px rgba($mainDark, .5);
+               transform: scale(1.2);
+          }
+     }
+
+     .pagination-button{
+          width:auto;
+          min-width: 35px;
+          margin:0 .2em;
+     }
+     .dots{
+          color:rgba($mainDark, .3);
+          margin:0 .5em;
+     }
+}
+
+.gif-data{
+     .add-to-local{
+          box-sizing: border-box;
+          box-shadow: 0 0 0 1px $mainLight;
+          padding:.5em;
+          color:white;
+          width:5em;
+          position: absolute;
+          bottom:1em;
+          left:50%;
+          margin-left: -2.5em;
+          font-weight: bold;
+          text-align: center;
+          border-radius: 1em;
+          text-transform: uppercase;
+          transition: .3s;
+
+          &:hover{
+               background-color: rgba($mainLight, .5);
+          }
+
+          &.current{
+               background-color: $mainLight;
+
+               span{
+                    background: -webkit-linear-gradient(#fbc2eb 0%, #a6c1ee 100%);
+                      -webkit-background-clip: text;
+                      -webkit-text-fill-color: transparent;
+               }
+          }
+     }
+}
