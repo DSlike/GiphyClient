@@ -9,7 +9,8 @@
      position: relative;
 
      span{
-          background: -webkit-linear-gradient(#fbc2eb 0%, #a6c1ee 100%);
+          background: -webkit-linear-gradient($gradient1 0%, $gradient2 100%);
+          animation: gradientAnim 30s infinite linear;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
       }
@@ -19,7 +20,7 @@
      a.my-collection, a.upload{
           font-size:14px;
           letter-spacing: 1px;
-          background: -webkit-linear-gradient(#fbc2eb 0%, #a6c1ee 100%);
+          background: -webkit-linear-gradient($gradient1 0%, $gradient2 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             position: absolute;
@@ -29,7 +30,7 @@
             transition: .3s;
 
             &:hover{
-                background: -webkit-linear-gradient(#fbc2eb 50%, #a6c1ee 100%);
+                background: -webkit-linear-gradient($gradient1 50%, $gradient2 100%);
                   -webkit-background-clip: text;
                   -webkit-text-fill-color: transparent;
             }
@@ -82,7 +83,7 @@
                     bottom:0px;
                     padding:1em;
                     color:$mainLight;
-                    background-image: linear-gradient(to top, rgba(#fbc2eb, .8) 0%, rgba(#a6c1ee, 1) 100%);
+                    background-image: linear-gradient(to top, rgba($gradient1, .8) 0%, rgba($gradient2, 1) 100%);
                     transition: .3s;
 
                     .data-cell span{
@@ -146,7 +147,8 @@
      height: calc(100vh - 79px);
      display: table;
      position: relative;
-     background-image: linear-gradient(to top, rgba(#fbc2eb, .8) 0%, rgba(#a6c1ee, 1) 100%);
+     background-image: linear-gradient(to top, $gradient1 0%, $gradient2 100%);
+     animation: gradientAnim 5s infinite linear;
 
      h1{
           color:white;

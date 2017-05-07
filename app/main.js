@@ -361,7 +361,7 @@ const Upload = React.createClass({
                     type: 'POST',
                     data: {
                          username: "",
-                         api_key:'dc6zaTOxFJmzC'
+                         api_key:'dc6zaTOxFJmzC',
                          file: fileName,
                          tags: ""
                     },
