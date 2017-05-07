@@ -12,3 +12,49 @@
           background-position: bottom left;
      }
 }
+@keyframes loading{
+     0%, 100%{
+          transform:scale(1);
+     }
+     30%{
+          transform:scale(.8);
+     }
+     50%{
+          transform:scale(1.2);
+     }
+}
+
+@keyframes appear{
+     0%{
+          transform: scale(0);
+          opacity: 0;
+     }
+     100%{
+          transform: scale(1);
+          opacity: 1;
+     }
+}
+
+.preloader{
+     width:100%;
+     height: 100%;
+     background-image: linear-gradient(to top, $gradient1 0%, $gradient2 100%);
+     color:white;
+
+     .circle{
+          position: absolute;
+          top:50%;
+          left:50%;
+          margin:-50px;
+          height:100px;
+          width:100px;
+          box-shadow: 0 0 0 10px $mainLight;
+          border-radius: 100%;
+          text-align: center;
+          padding-top: 40px;
+          color:white;
+          box-sizing: border-box;
+
+          animation: loading 2s infinite;
+     }
+}

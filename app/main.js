@@ -56,6 +56,7 @@ const MainPage = React.createClass({
           if(!localStorage["gifs"])
                localStorage.gifs="";
           $.get("http://api.giphy.com/v1/gifs/trending?limit=20&api_key=dc6zaTOxFJmzC", function(data){
+               console.log(data);
                self.setState({"data":data});
           });
      },
@@ -153,6 +154,8 @@ const MainPage = React.createClass({
 
           if(self.state.data!="Loading"){
                var giffsTable = $.map(self.state.data.data, function(e, i){
+                    if(!e.images.preview_gif || !e.images.original || !e.id)
+                         return;
                     var data = JSON.parse(localStorage["gifs"]);
                     const rFL = self.removeFromLocal.bind(self, e.id);
                     const aTL = self.addToLocal.bind(self, e);

@@ -1,4 +1,51 @@
-@media screen and (max-width:"500px"){
+@media screen and (max-width:"768px"){
+     #view{
+          height:80vh;
+          width:100vw;
+          top:10vh;
+          left:0px;
+          margin:0px;
+          box-shadow:0 0 0 1000vh rgba($mainDark, .5);
+          border-radius: 0px;
+
+          .close{
+               right:40px;
+               top:40px;
+               box-shadow:none;
+          }
+     }
+}
+@media screen and (max-width:"992px"){
+     #body{
+          .top-gifs{
+               .gif-block{
+                    width:48%;
+               }
+          }
+     }
+     #upload{
+          overflow: hidden;
+          *{
+               position: static!important;
+               margin-top: 1em!important;
+               display: table;
+          }
+          label{
+               margin:2em auto!important;
+               text-align: center;
+               font-size: 1.2em;
+          }
+     }
+}
+@media screen and (max-width:"480px"){
+     #header{
+          a{
+               position: static!important;
+               width:100%;
+               display: block;
+               margin-top:1em!important;
+          }
+     }
      #body{
           .top-gifs{
                .gif-block{
@@ -7,14 +54,22 @@
                }
           }
      }
-}
+     #upload{
+          height: calc(100vh - 188px);
+     }
+     #view{
+          height:100vh;
+          width:100vw;
+          top:0vh;
+          left:0px;
+          margin:0px;
+          background-color: rgba($mainDark, .8);
+          color:white;
 
-@media screen and (max-width:"800px"){
-     #body{
-          .top-gifs{
-               .gif-block{
-                    width:48%;
-               }
+          .close{
+               right:20px;
+               top:20px;
+               box-shadow:none;
           }
      }
 }
