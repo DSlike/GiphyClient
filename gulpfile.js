@@ -10,6 +10,7 @@ gulp.task('devAssemble', function() {
                 './app/separated/app.js',
                 './app/separated/mainPage.js',
                 './app/separated/myCollection.js',
+                './app/separated/upload.js',
                 './app/separated/routes.js'
         ])
         .pipe(concat('main.js'))

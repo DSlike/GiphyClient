@@ -21,29 +21,30 @@ const App = React.createClass({
      closeView(){
                $("#view").addClass("hidden");
      },
-  render: function() {
-    return (
-         <section id="main">
-               <section id="header">
-                    <Link to="/"><span>giphy</span></Link>
-                    <Link to="/my-collection" className="my-collection">my collection</Link>
+       render: function() {
+         return (
+              <section id="main">
+                    <section id="header">
+                         <Link to="/"><span>giphy</span></Link>
+                         <Link to="/my-collection" className="my-collection">my collection</Link>
+                              <Link to="/upload" className="upload">upload</Link>
+                    </section>
+                    <section id="body">
+                         {this.props.children}
+                    </section>
+                    <section id="view" className="hidden">
+                         <div className="close" onClick={this.closeView}/>
+                         <img src="" />
+                         <div className="gif-data" onClick={self.openGifOriginal}>
+                              <div className="data-cell"><span className="bold-span">User: </span><span className="user-name"></span></div>
+                              <div className="data-cell"><span className="bold-span">Rating: </span><span className="rating"></span></div>
+                              <div className="data-cell"><span className="bold-span">Import Date: </span><span className="datetime"></span></div>
+                              <div className="data-cell"><span className="bold-span">Type: </span><span className="type"></span></div>
+                         </div>
+                    </section>
                </section>
-               <section id="body">
-                    {this.props.children}
-               </section>
-               <section id="view" className="hidden">
-                    <div className="close" onClick={this.closeView}/>
-                    <img src="" />
-                    <div className="gif-data" onClick={self.openGifOriginal}>
-                         <div className="data-cell"><span className="bold-span">User: </span><span className="user-name"></span></div>
-                         <div className="data-cell"><span className="bold-span">Rating: </span><span className="rating"></span></div>
-                         <div className="data-cell"><span className="bold-span">Import Date: </span><span className="datetime"></span></div>
-                         <div className="data-cell"><span className="bold-span">Type: </span><span className="type"></span></div>
-                    </div>
-               </section>
-          </section>
-    )
-  }
+         )
+       }
 });
 
 const MainPage = React.createClass({
@@ -182,7 +183,10 @@ const MainPage = React.createClass({
                          </div>)
                });
                if(self.state.data.pagination.total_count){
-                    const pagesCount = Math.floor(self.state.data.pagination.total_count/20)-1;
+                    if(self.state.data.pagination.total_count>4998)
+                         var pagesCount = Math.floor(4998/20)-1;
+                    else
+                         var pagesCount = Math.floor(self.state.data.pagination.total_count/20)-1;
                     var currentPage = Math.ceil(self.state.data.pagination.offset/20);
                     if(currentPage<4){
                          var pagination = (
@@ -254,7 +258,8 @@ const MainPage = React.createClass({
 });
 
 const MyCollection = React.createClass({
-     removeFromLocal(id){
+     removeFromLocal(id, e){
+          e.preventDefault();
           var data = localStorage.gifs;
           if(data.length==0)
                data = [];
@@ -265,8 +270,10 @@ const MyCollection = React.createClass({
           data = JSON.stringify(data);
           localStorage["gifs"]=data;
           this.forceUpdate();
+          e.stopPropagnation();
      },
-     openGifOriginal: function(data){
+     openGifOriginal: function(data, e){
+          e.preventDefault();
           $("#view").addClass("hidden");
           setTimeout(function(){
                $("#view img").attr("src","");
@@ -277,6 +284,7 @@ const MyCollection = React.createClass({
                $("#view .type").text(data.type);
                $("#view").removeClass("hidden");
           }, 300);
+          e.stopPropagation();
      },
      render(){
           const self = this;
@@ -301,11 +309,138 @@ const MyCollection = React.createClass({
      }
 });
 
+const Upload = React.createClass({
+     uploadVideo: function(e){
+     //   var parent = this._reactInternalInstance._currentElement._owner._instance,
+     //       self = this._reactInternalInstance._currentElement._owner._instance,
+     var fileName = document.getElementById("inputFile").files[0].name;
+      var files = $("#inputFile").get(0).files;
+       if (files.length > 0){
+         var formData = new FormData();
+         for (var i = 0; i < files.length; i++) {
+           var file = files[i];
+           formData.append('uploads[]', file, file.name);
+         }
+         console.log(fileLoc);
+     //     var self = this;
+     //     var l = JSON.stringify(localStorage);
+     //     $.post("/configure", {l}, function(data){
+     //       $.ajax({
+     //         url: '/uploadVideo',
+     //         type: 'POST',
+     //         data: formData,
+     //         processData: false,
+     //         contentType: false,
+     //         cache: false,
+     //         success: function(data){
+     //         },
+     //         xhr: function() {
+     //           var xhr = new XMLHttpRequest();
+     //           xhr.upload.addEventListener('progress', function(evt) {
+     //             if (evt.lengthComputable) {
+     //               var percentComplete = evt.loaded / evt.total;
+     //               percentComplete = parseInt(percentComplete * 100);
+     //               $('.progress-line').addClass("process");
+     //               $('.progress-line').text(percentComplete + '%');
+     //               $('.progress-line').width(percentComplete + '%');
+     //             }
+     //           }, false);
+     //           xhr.upload.addEventListener('load', function(e) {
+     //             window.location.replace("/videoEdit");
+     //           });
+     //           return xhr;
+     //         }
+     //       });
+     //     });
+     //   }
+               $.ajax({
+                    url: 'http://upload.giphy.com/v1/gifs?api_key=dc6zaTOxFJmzC',
+                    processData: false,
+                    contentType: false,
+                    crossDomain: true,
+                    type: 'POST',
+                    data: {
+                         username: "",
+                         api_key:'dc6zaTOxFJmzC'
+                         file: fileName,
+                         tags: ""
+                    },
+                    success: function(data) {
+                         console.log(data);
+                    },
+                    error: function(err){
+                         console.log(err);
+                    }
+               });
+          }
+     },
+     fileDrop: function(event){
+       event.preventDefault();
+       let maxFileSize = 100000000;
+       var parent = this._reactInternalInstance._currentElement._owner._instance,
+           self = this._reactInternalInstance._currentElement._owner._instance;
+       var file = event.dataTransfer.files[0];
+       var formData = new FormData();
+       formData.append('uploads[]', file, file.name);
+       if (file.size > maxFileSize) {
+       }
+       else{
+         let l = JSON.stringify(localStorage);
+         $.post("/configure", {l}, function(data){
+           $.ajax({
+             url: '/uploadVideo',
+             type: 'POST',
+             data: formData,
+             processData: false,
+             contentType: false,
+             cache: false,
+             success: function(data){
+             },
+             xhr: function() {
+               var xhr = new XMLHttpRequest();
+               xhr.upload.addEventListener('progress', function(evt) {
+                 if (evt.lengthComputable) {
+                   var percentComplete = evt.loaded / evt.total;
+                   percentComplete = parseInt(percentComplete * 100);
+                   $('.progress-line').addClass("process");
+                   $('.progress-line').text(percentComplete + '%');
+                   $('.progress-line').width(percentComplete + '%');
+                 }
+               }, false);
+               xhr.upload.addEventListener('load', function(e) {
+                 window.location.replace("/videoEdit");
+               });
+               return xhr;
+             }
+           });
+         });
+       }
+     },
+     fileDragOver: function(e){
+       e.preventDefault();
+     },
+     render(){
+          return (
+               <section id="upload" onDragOver={this.fileDragOver} onDragLeave={this.fileGragOver} onDrop={this.fileDrop}>
+                 <h1>click on the button or drag & drop<br /> to upload your GIF</h1>
+                 <input id="inputFile" accept="image/gif" type="file" name="file" onChange={this.uploadVideo} />
+                 <label htmlFor="inputFile"> upload GIF
+                 </label>
+                 <div className="uploading-progress">
+                   <div className="progress-line" />
+                 </div>
+               </section>
+          );
+     }
+});
+
 ReactDOM.render((
   <ReactRouter.Router history={browserHistory}>
     <ReactRouter.Route component={App}>
       <Route path="/" component={MainPage}/>
       <Route path="/my-collection" component={MyCollection}/>
+      <Route path="/upload" component={Upload}/>
+       <Route path="/*" component={MainPage}/>
     </ReactRouter.Route>
   </ReactRouter.Router>),
   destination

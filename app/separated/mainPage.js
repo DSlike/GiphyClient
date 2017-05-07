@@ -134,7 +134,10 @@ const MainPage = React.createClass({
                          </div>)
                });
                if(self.state.data.pagination.total_count){
-                    const pagesCount = Math.floor(self.state.data.pagination.total_count/20)-1;
+                    if(self.state.data.pagination.total_count>4998)
+                         var pagesCount = Math.floor(4998/20)-1;
+                    else
+                         var pagesCount = Math.floor(self.state.data.pagination.total_count/20)-1;
                     var currentPage = Math.ceil(self.state.data.pagination.offset/20);
                     if(currentPage<4){
                          var pagination = (

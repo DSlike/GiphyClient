@@ -16,7 +16,7 @@
       a{
            text-decoration: none;
       }
-     a.my-collection{
+     a.my-collection, a.upload{
           font-size:14px;
           letter-spacing: 1px;
           background: -webkit-linear-gradient(#fbc2eb 0%, #a6c1ee 100%);
@@ -34,6 +34,10 @@
                   -webkit-text-fill-color: transparent;
             }
       }
+      a.upload{
+           left:auto;
+           right:20px;
+      }
 }
 
 #body{
@@ -42,6 +46,7 @@
           width:100%;
           margin:0 auto;
           font-size: 0px;
+          display: table;
 
           .gif-block{
                font-size: 15px;
@@ -90,12 +95,12 @@
 
 #view{
      width:600px;
-     height:600px;
+     height:520px;
      background-color: white;
      position: fixed;
      top:50%;
      left:50%;
-     margin:-300px;
+     margin: -260px -300px;
      border-radius: .5em;
      padding: 1em;
      box-sizing: border-box;
@@ -132,5 +137,27 @@
                background-color: darken(red, 20%);
                box-shadow: 0 12px 25px rgba($mainDark, .7);
           }
+     }
+}
+
+#upload{
+     width:100%;
+     margin:0 auto;
+     height: calc(100vh - 79px);
+     display: table;
+     position: relative;
+     background-image: linear-gradient(to top, rgba(#fbc2eb, .8) 0%, rgba(#a6c1ee, 1) 100%);
+
+     h1{
+          color:white;
+          font-size: 2em;
+          position: absolute;
+          width: 100%;
+          text-align: center;
+          top:50%;
+          margin:0;
+          margin-top: -39px;
+          text-align: center;
+          text-transform: uppercase;
      }
 }

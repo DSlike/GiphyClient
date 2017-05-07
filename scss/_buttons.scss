@@ -69,3 +69,29 @@
           }
      }
 }
+
+#upload{
+     label{
+          position: absolute;
+          background-color: white;
+          color:#a6c1ee;
+          padding:.5em 1em;
+          border-radius: 2em;
+          left:50%;
+          top:50%;
+          text-transform: uppercase;
+          margin-left:-55px;
+          margin-top: 50px;
+          cursor: pointer;
+          transition: .3s;
+
+          &:hover{
+               transform: scale(1.1);
+               box-shadow: 0 2px 5px rgba($mainDark, .3);
+          }
+          &:active{
+               box-shadow: 0 3px 8px rgba($mainDark, .5);
+               transform: scale(1.2);
+          }
+     }
+}

@@ -1,5 +1,6 @@
 const MyCollection = React.createClass({
-     removeFromLocal(id){
+     removeFromLocal(id, e){
+          e.preventDefault();
           var data = localStorage.gifs;
           if(data.length==0)
                data = [];
@@ -10,8 +11,10 @@ const MyCollection = React.createClass({
           data = JSON.stringify(data);
           localStorage["gifs"]=data;
           this.forceUpdate();
+          e.stopPropagnation();
      },
-     openGifOriginal: function(data){
+     openGifOriginal: function(data, e){
+          e.preventDefault();
           $("#view").addClass("hidden");
           setTimeout(function(){
                $("#view img").attr("src","");
@@ -22,6 +25,7 @@ const MyCollection = React.createClass({
                $("#view .type").text(data.type);
                $("#view").removeClass("hidden");
           }, 300);
+          e.stopPropagation();
      },
      render(){
           const self = this;
