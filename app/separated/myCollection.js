@@ -6,7 +6,6 @@ const MyCollection = React.createClass({
                data = [];
           else
                data = JSON.parse(data);
-          // data.push(id);
           delete data[id];
           data = JSON.stringify(data);
           localStorage["gifs"]=data;
