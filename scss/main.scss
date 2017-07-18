@@ -5,9 +5,10 @@
 @import "media";
 @import "other";
 
-body, html{
-     padding:0px;
-     margin:0px;
-     font-family: Calibri;
-     background-color:$mainbackground;
+body,
+html {
+    margin: 0;
+    padding: 0;
+    background-color: $mainbackground;
+    font-family: Calibri, 'San Francisco', 'Roboto', sans-serif;
 }
