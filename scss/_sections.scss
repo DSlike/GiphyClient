@@ -21,25 +21,31 @@
         text-decoration: none;
     }
 
-    a.my-collection {
+    a.my-collection, a.home {
         position: absolute;
         top: 50%;
-        left: 20px;
-        margin-top: -6px;
+        right: 20px;
+        box-sizing: border-box;
+        // margin-top: -6px;
+        padding: 1em;
+        padding:10px;
+        border-radius: 1em;
         background-color: $accentColor;
-        -webkit-background-clip: text;
+        color:white;
         letter-spacing: 1px;
         font-size: 14px;
         transition: 0.3s;
-
-        -webkit-text-fill-color: transparent;
+        transform: translateY(-50%);
 
         &:hover {
-            background-color: $accentColor;
-            -webkit-background-clip: text;
-
-            -webkit-text-fill-color: transparent;
+            background-color: white;
+            box-shadow:0 0 0 1px $accentColor;
+            color:$accentColor;
         }
+    }
+    a.home{
+        right:auto;
+        left:20px;
     }
 }
 

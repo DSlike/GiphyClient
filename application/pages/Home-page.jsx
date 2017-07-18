@@ -57,16 +57,16 @@ export default class Home extends React.Component {
                         <div className="gif-data" onClick={() => openGifOriginal(gifData)}>
                             <div className="data-cell">
                                 <span>User:
-                                </span>{element.username}</div>
+                                </span> {element.username}</div>
                             <div className="data-cell">
                                 <span>Rating:
-                                </span>{element.rating}</div>
+                                </span> {element.rating}</div>
                             <div className="data-cell">
                                 <span>Import Date:
-                                </span>{element.import_datetime}</div>
+                                </span> {element.import_datetime}</div>
                             <div className="data-cell">
                                 <span>Type:
-                                </span>{element.type}</div>
+                                </span> {element.type}</div>
                             {addButton}
                         </div>
                     </div>

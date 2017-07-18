@@ -10,6 +10,7 @@ export default class Header extends React.Component {
         <section id="header">
              <Link to="/"><span>giphy</span></Link>
              <Link to="/my-collection" className="my-collection">my collection</Link>
+             <Link to="/" className="home">home</Link>
         </section>
     );
   }
